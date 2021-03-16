@@ -12,7 +12,7 @@ namespace StudentGPA
         public DateTime DoB { get; set; }
         public string PhoneNum { get; set; }
 
-        public void CreateStudent(Student student)
+        public void Create(Student student)
         {
             Console.WriteLine("Creating new student...");
 

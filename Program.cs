@@ -10,14 +10,30 @@ namespace StudentGPA
             while (true)
             {
                 Console.WriteLine("Enter an option");
-                Console.WriteLine("(C)reate a student");
+                Console.WriteLine("(A) Create a student");
+                Console.WriteLine("(B) Create a semester");
+                Console.WriteLine("(C) Create a course");
                 string option = Console.ReadLine();
                 switch (option.ToUpper())
                 {
-                    case "C":
+                    case "A":
                         {
                             Console.Clear();
                             CreateStudent();
+                            break;
+                        }
+
+                    case "B":
+                        {
+                            Console.Clear();
+                            CreateSemester();
+                            break;
+                        }
+
+                    case "C":
+                        {
+                            Console.Clear();
+                            CreateCourse();
                             break;
                         }
 
@@ -36,10 +52,35 @@ namespace StudentGPA
 
             Student student = new();
 
-            Console.WriteLine("Enter the student's first name: ");
-            student.FirstName = Console.ReadLine();
-            Console.WriteLine("Enter the student's last name: ");
-            student.LastName = Console.ReadLine();
+            bool firstNameLong = true;
+            while (firstNameLong == true)
+            {
+                Console.WriteLine("Enter the student's first name: ");
+                student.FirstName = Console.ReadLine();
+                if (student.FirstName.Length > 50)
+                {
+                    Console.WriteLine("Student's first name too long!");
+                }
+                else
+                {
+                    firstNameLong = false;
+                }
+            }
+
+            bool lastNameLong = true;
+            while (lastNameLong == true)
+            {
+                Console.WriteLine("Enter the student's last name: ");
+                student.LastName = Console.ReadLine();
+                if (student.FirstName.Length > 50)
+                {
+                    Console.WriteLine("Student's last name too long!");
+                }
+                else
+                {
+                    lastNameLong = false;
+                }
+            }
 
             bool DoBValid = false;
             while (DoBValid == false)
@@ -70,7 +111,34 @@ namespace StudentGPA
             Console.WriteLine("Enter the student's contact phone number");
             student.PhoneNum = Console.ReadLine();
 
-            student.CreateStudent(student);
+            student.Create(student);
+        }
+
+        static void CreateSemester()
+        {
+            Semester semester = new();
+            bool semesterLong = true;
+            while (semesterLong == true)
+            {
+                Console.WriteLine("Please enter a name for the semester: ");
+                semester.SemesterName = Console.ReadLine();
+                if (semester.SemesterName.Length > 50)
+                {
+                    Console.WriteLine("That semester name is too long!");
+                }
+                else
+                {
+                    semesterLong = false;
+                }
+            }
+            semester.Create(semester);
+        }
+
+        static void CreateCourse()
+        {
+            Courses course = new();
+
+            course.Create(course);
         }
     }
 }
